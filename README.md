@@ -16,14 +16,14 @@ import (
 	"github.com/deelawn/structsync"
 )
 
-type srcStruct struct {
+type SrcStruct struct {
 	S *string  `sync:"s"`
 	I int      `sync:"i"`
 	B bool     `sync:"b"`
 	F *float64 `sync:"f"`
 }
 
-type dstStruct struct {
+type DstStruct struct {
 	AnInt   *int    `sync:"i"`
 	AString string  `sync:"s"`
 	AFloat  float64 `sync:"f"`
@@ -32,8 +32,8 @@ type dstStruct struct {
 func main() {
 
 	floatVal := float64(123.123)
-	validDst := dstStruct{}
-	validSrc := srcStruct{
+	validDst := DstStruct{}
+	validSrc := SrcStruct{
 		I: 19,
 		B: true,
 		F: &floatVal,
