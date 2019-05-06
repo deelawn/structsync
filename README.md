@@ -5,3 +5,51 @@
 
 # structsync
 Use field tags to sync one struct to another
+
+Example:
+```
+package main
+
+import (
+	"fmt"
+
+	"github.com/deelawn/structsync"
+)
+
+type srcStruct struct {
+	S *string  `sync:"s"`
+	I int      `sync:"i"`
+	B bool     `sync:"b"`
+	F *float64 `sync:"f"`
+}
+
+type dstStruct struct {
+	AnInt   *int    `sync:"i"`
+	AString string  `sync:"s"`
+	AFloat  float64 `sync:"f"`
+}
+
+func main() {
+
+	floatVal := float64(123.123)
+	validDst := dstStruct{}
+	validSrc := srcStruct{
+		I: 19,
+		B: true,
+		F: &floatVal,
+	}
+
+	// structsync.Tag = "sync"
+	if err := structsync.StructSync(validSrc, &validDst, structsync.Tag); err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Printf("%+v\n", validDst)
+
+}
+```
+
+
+
+
